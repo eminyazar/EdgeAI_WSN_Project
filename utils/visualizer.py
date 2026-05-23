@@ -18,7 +18,7 @@ class NetworkVisualizer:
         # 2. Kapsama Alanını (Menzili) Çiz
         circle = patches.Circle(self.net.gateway_pos, self.net.max_range, 
                                 fill=False, color='red', linestyle='--', alpha=0.5, 
-                                label=f'Kapsama Alanı (R={self.net.max_range})')
+                                label=f'Coverage Area (R={self.net.max_range})')
         ax.add_patch(circle)
         
         # 3. Düğümleri Çiz
@@ -35,13 +35,13 @@ class NetworkVisualizer:
                 out_range_y.append(node.y)
                 
         # Menzil içindekiler (Yeşil)
-        ax.scatter(in_range_x, in_range_y, c='green', s=50, label='Bağlı Düğümler')
+        ax.scatter(in_range_x, in_range_y, c='green', s=50, label='Connected Nodes')
         # Menzil dışındakiler (Gri)
-        ax.scatter(out_range_x, out_range_y, c='gray', marker='x', s=50, label='Kapsama Dışı')
+        ax.scatter(out_range_x, out_range_y, c='gray', marker='x', s=50, label='Out of Range')
         
-        ax.set_title('WSN Edge AI Topoloji Haritası')
-        ax.set_xlabel('X Koordinatı')
-        ax.set_ylabel('Y Koordinatı')
+        ax.set_title('WSN Edge AI Topology Visualization')
+        ax.set_xlabel('X coordinate')
+        ax.set_ylabel('Y coordinate')
         ax.set_xlim(0, 100)
         ax.set_ylim(0, 100)
         ax.legend()
@@ -56,13 +56,13 @@ class NetworkVisualizer:
         plt.plot(range(1, len(energy_history) + 1), energy_history, 
                  marker='o', linestyle='-', color='b', linewidth=2)
         
-        plt.title('Ağın Toplam Enerji Tüketimi (Edge AI)')
-        plt.xlabel('Simülasyon Döngüsü')
-        plt.ylabel('Toplam Enerji (mJ)')
+        plt.title('Total Energy Consumption (Edge AI)')
+        plt.xlabel('Simulation Cycle')
+        plt.ylabel('Total Energy (mJ)')
         plt.grid(True, alpha=0.5)
         
         # Anomali anını işaretle (11. döngü)
-        plt.axvline(x=11, color='r', linestyle='--', label='Anomali (Yangın) Başlangıcı')
+        plt.axvline(x=11, color='r', linestyle='--', label='Anomaly (Fire) Start')
         plt.legend()
         
         plt.show()
